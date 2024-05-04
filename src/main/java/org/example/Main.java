@@ -1,12 +1,17 @@
 package org.example;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
-import java.util.Date;
+import org.example.GUI.*;
+
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
 
-    InterventionCRUD interventionCRUD = InterventionCRUD.getInstance();
-    interventionCRUD.delete("1");
-    }
+        JFrame frame = new JFrame("ListPacientsGUI");
+        frame.setContentPane(new ListPacientsGUI().getMainPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+
+        }
 }

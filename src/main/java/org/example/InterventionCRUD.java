@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Optional;
 
 public class InterventionCRUD implements CRUDInterface<Intervention> {
@@ -23,10 +24,12 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
     @Override
     public void create(Intervention intervention) {
         try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO intervention  (pacient_cnp, type, description) VALUES (?, ?, ?)");
+            java.sql.Date date = new java.sql.Date(intervention.getDate().getTime());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO intervention  (pacient_cnp, type, description, date) VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, intervention.getPacientCnp());
             preparedStatement.setString(2, intervention.getType());
             preparedStatement.setString(3, intervention.getDescription());
+            preparedStatement.setDate(4, date);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,11 +39,14 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
     @Override
     public void update(Intervention intervention) {
         try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE intervention SET pacient_cnp = ?, type = ?, description = ? WHERE intervention_id = ?");
+            java.sql.Date date = new java.sql.Date(intervention.getDate().getTime());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE intervention SET pacient_cnp = ?, type = ?, description = ?, date = ? WHERE intervention_id = ?");
             preparedStatement.setString(1, intervention.getPacientCnp());
             preparedStatement.setString(2, intervention.getType());
             preparedStatement.setString(3, intervention.getDescription());
-            preparedStatement.setInt(4, intervention.getInterventionId());
+            preparedStatement.setDate(4, date);
+            preparedStatement.setInt(5, intervention.getInterventionId());
+
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,7 +75,8 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
                 String pacientCnp = resultSet.getString("pacient_cnp");
                 String type = resultSet.getString("type");
                 String description = resultSet.getString("description");
-                Intervention intervention = new Intervention(pacientCnp, type, description);
+                Date date = resultSet.getDate("date");
+                Intervention intervention = new Intervention(pacientCnp, type, description, date);
                 intervention.setInterventionId(interventionId);
                 return Optional.of(intervention);
             }

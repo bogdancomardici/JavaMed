@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class MedicCRUD implements CRUDInterface<Medic>{
 
-    public static MedicCRUD instance = null;
+    private static MedicCRUD instance = null;
 
     private MedicCRUD() {
     }

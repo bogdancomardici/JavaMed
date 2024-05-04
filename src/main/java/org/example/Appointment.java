@@ -1,6 +1,6 @@
 package org.example;
 import java.time.LocalDateTime;
-public class Appointment {
+public class Appointment implements CronInterface{
 
     private int appointmentId;
     private String medicCnp;
@@ -43,5 +43,20 @@ public class Appointment {
         this.medicCnp = medicCnp;
         this.pacientCnp = pacientCnp;
         this.date = date;
+    }
+
+    @Override
+    public boolean isInThePast() {
+        return date.isBefore(LocalDateTime.now());
+    }
+
+    @Override
+    public boolean isToday() {
+        return date.toLocalDate().isEqual(LocalDateTime.now().toLocalDate());
+    }
+
+    @Override
+    public boolean isInTheFuture() {
+        return date.isAfter(LocalDateTime.now());
     }
 }

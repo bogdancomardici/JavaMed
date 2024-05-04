@@ -1,11 +1,13 @@
 package org.example;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class PacientCRUD implements CRUDInterface<Pacient> {
 
-    public static PacientCRUD instance;
+    private static PacientCRUD instance;
     private PacientCRUD() {
     }
 
@@ -35,6 +37,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
 
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
@@ -93,5 +96,29 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
         return Optional.empty();
     }
 
-
+    // readAll function
+    public List<Pacient> readAll() {
+        List<Pacient> pacients = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM pacient")) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String cnp = resultSet.getString("cnp");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String phoneNumber = resultSet.getString("phone_number");
+                Date birthDate = resultSet.getDate("birth_date");
+                String address = resultSet.getString("address");
+                String bloodType = resultSet.getString("blood_type");
+                int height = resultSet.getInt("height");
+                int weight = resultSet.getInt("weight");
+                String chronicDiseases = resultSet.getString("chronic_diseases");
+                Pacient pacient = new Pacient(cnp, firstName, lastName, phoneNumber, birthDate, address, bloodType, height, weight, chronicDiseases);
+                pacients.add(pacient);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pacients;
+    }
 }
