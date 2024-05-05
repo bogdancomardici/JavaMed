@@ -1,6 +1,8 @@
 package org.example;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class MedicCRUD implements CRUDInterface<Medic>{
@@ -94,4 +96,28 @@ public class MedicCRUD implements CRUDInterface<Medic>{
         }
     }
 
+    public List<Medic> readAll() {
+        List<Medic> medics = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medic")) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String cnp = resultSet.getString("cnp");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String phoneNumber = resultSet.getString("phone_number");
+                Date birthDate = resultSet.getDate("birth_date");
+                String address = resultSet.getString("address");
+                String speciality = resultSet.getString("speciality");
+                int yearsOfExperience = resultSet.getInt("years_experience");
+                medics.add(new Medic(cnp, firstName, lastName, phoneNumber, birthDate, address, speciality, yearsOfExperience));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return medics;
+    }
 }

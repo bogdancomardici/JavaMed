@@ -1,9 +1,8 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class TreatmentCRUD implements CRUDInterface<Treatment>{
@@ -80,5 +79,26 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public List<Treatment> readAll() {
+        List<Treatment> treatments = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM treatment");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int treatmentId = resultSet.getInt("treatment_id");
+                String pacientCnp = resultSet.getString("pacient_cnp");
+                String treatmentName = resultSet.getString("treatment_name");
+                int durationDays = resultSet.getInt("duration_days");
+                int frequencyPerDay = resultSet.getInt("frequency_per_day");
+                Treatment treatment = new Treatment(pacientCnp, treatmentName, durationDays, frequencyPerDay);
+                treatment.setTreatmentId(treatmentId);
+                treatments.add(treatment);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return treatments;
     }
 }

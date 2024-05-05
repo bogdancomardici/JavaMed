@@ -1,19 +1,19 @@
 package org.example.GUI;
 
-import org.example.Pacient;
-import org.example.PacientCRUD;
+import org.example.Medic;
+import org.example.MedicCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.Optional;
 
-public class ListPacientsGUI {
+public class ListMedicsGUI {
     private JTable table1;
     private JPanel panel1;
-    private JButton addANewPacientButton;
+    private JButton addMedicButton;
 
-    private List<Pacient> pacients;
+    private List<Medic> medics;
 
     public void populateTable() {
         DefaultTableModel model = new DefaultTableModel();
@@ -23,24 +23,23 @@ public class ListPacientsGUI {
         model.addColumn("Phone Number");
         model.addColumn("Birth Date");
         model.addColumn("Address");
-        model.addColumn("Blood Type");
-        model.addColumn("Height");
-        model.addColumn("Weight");
-        model.addColumn("Chronic Diseases");
+        model.addColumn("Speciality");
+        model.addColumn("Years of Experience");
         model.addColumn("Edit");
         model.addColumn("Delete");
 
         // add the data and edit delete buttons
-        for (Pacient pacient : pacients) {
-            model.addRow(new Object[]{pacient.getCnp(), pacient.getFirstName(), pacient.getLastName(), pacient.getPhoneNumber(), pacient.getBirthDate(), pacient.getAddress(), pacient.getBloodType(), pacient.getHeight(), pacient.getWeight(), pacient.getChronicDiseases(), "Edit", "Delete"});
+        for (Medic medic : medics) {
+            model.addRow(new Object[]{medic.getCnp(), medic.getFirstName(), medic.getLastName(), medic.getPhoneNumber(), medic.getBirthDate(), medic.getAddress(), medic.getSpeciality(), medic.getYearsOfExperience(), "Edit", "Delete"});
         }
 
         table1.setModel(model);
 
     }
-    public ListPacientsGUI() {
-        PacientCRUD pacientCRUD = PacientCRUD.getInstance();
-        pacients = pacientCRUD.readAll();
+
+    public ListMedicsGUI() {
+        MedicCRUD medicCRUD = MedicCRUD.getInstance();
+        medics = medicCRUD.readAll();
         populateTable();
         // make the table cells not editable
         table1.setDefaultEditor(Object.class, null);
@@ -50,57 +49,55 @@ public class ListPacientsGUI {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = table1.rowAtPoint(evt.getPoint());
                 int col = table1.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 10) {
-                    // open the edit pacient gui
+                if (row >= 0 && col == 8) {
+                    // open the edit medic gui
                     String cnp = (String) table1.getValueAt(row, 0);
-                    Optional<Pacient> pacient = pacientCRUD.read(cnp);
+                    Optional<Medic> medic = medicCRUD.read(cnp);
 
-                    JFrame frame = new JFrame("EditPacientGUI");
-                    EditPacientGUI editPacientGUI = new EditPacientGUI(pacient.get());
-                    frame.setContentPane(editPacientGUI.getMainPanel());
+                    JFrame frame = new JFrame("EditMedicGUI");
+                    EditMedicGUI editMedicGUI = new EditMedicGUI(medic.get());
+                    frame.setContentPane(editMedicGUI.getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
-                    // update the table after all the editing windows are closed
+
                     frame.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                            pacients = pacientCRUD.readAll();
+                            // refresh the table
+                            medics = medicCRUD.readAll();
                             populateTable();
                         }
                     });
-                } else if (row >= 0 && col == 11) {
-                    PacientCRUD pacientCRUD = PacientCRUD.getInstance();
-                    // get pacient cnp from the table
+                } else if (row >= 0 && col == 9) {
+                    // delete the medic
                     String cnp = (String) table1.getValueAt(row, 0);
-                    // delete the pacient
-                    pacientCRUD.delete(cnp);
+                    medicCRUD.delete(cnp);
                     // refresh the table
-                    pacients = pacientCRUD.readAll();
+                    medics = medicCRUD.readAll();
                     populateTable();
                 }
             }
         });
 
-        // add action listener for the add a new pacient button
-        addANewPacientButton.addActionListener(e -> {
-            JFrame frame = new JFrame("AddPacientGUI");
-            AddPacientGUI addPacientGUI = new AddPacientGUI();
-            frame.setContentPane(addPacientGUI.getMainPanel());
+        // add the action listener for the add medic button
+        addMedicButton.addActionListener(e -> {
+            JFrame frame = new JFrame("AddMedicGUI");
+            AddMedicGUI addMedicGUI = new AddMedicGUI();
+            frame.setContentPane(addMedicGUI.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
-            // update the table after all the editing windows are closed
+
             frame.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    pacients = pacientCRUD.readAll();
+                    // refresh the table
+                    medics = medicCRUD.readAll();
                     populateTable();
                 }
             });
         });
-
     }
-
 
 }

@@ -60,4 +60,8 @@ public class AddPacientGUI {
             }
         });
     }
+
+    public JPanel getMainPanel() {
+        return panel1;
+    }
 }
