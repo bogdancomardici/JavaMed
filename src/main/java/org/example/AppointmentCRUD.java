@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class AppointmentCRUD  implements CRUDInterface<Appointment>{
@@ -24,8 +26,8 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
         try(Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
             java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(appointment.getDate());
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO appointment  (medic_cnp, pacient_cnp, date) VALUES (?, ?, ?)");
-            preparedStatement.setString(1, appointment.getMedicCnp());
-            preparedStatement.setString(2, appointment.getPacientCnp());
+            preparedStatement.setString(1, appointment.getPacientCnp());
+            preparedStatement.setString(2, appointment.getMedicCnp());
             preparedStatement.setTimestamp(3, timestamp);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
@@ -59,8 +61,8 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
         try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
             java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(appointment.getDate());
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE appointment SET medic_cnp = ?, pacient_cnp = ?, date = ? WHERE appointment_id = ?");
-            preparedStatement.setString(1, appointment.getMedicCnp());
-            preparedStatement.setString(2, appointment.getPacientCnp());
+            preparedStatement.setString(1, appointment.getPacientCnp());
+            preparedStatement.setString(2, appointment.getMedicCnp());
             preparedStatement.setTimestamp(3, timestamp);
             preparedStatement.setInt(4, appointment.getAppointmentId());
             preparedStatement.executeUpdate();
@@ -79,6 +81,26 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Appointment> readAll() {
+        List<Appointment> appointments = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM appointment");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int appointmentId = resultSet.getInt("appointment_id");
+                String medicCnp = resultSet.getString("medic_cnp");
+                String pacientCnp = resultSet.getString("pacient_cnp");
+                java.sql.Timestamp timestamp = resultSet.getTimestamp("date");
+                Appointment appointment = new Appointment(medicCnp, pacientCnp, timestamp.toLocalDateTime());
+                appointment.setAppointmentId(appointmentId);
+                appointments.add(appointment);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return appointments;
     }
 
 }

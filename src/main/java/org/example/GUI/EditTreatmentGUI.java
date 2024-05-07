@@ -1,15 +1,9 @@
 package org.example.GUI;
 
-import org.example.Pacient;
-import org.example.PacientCRUD;
 import org.example.Treatment;
 import org.example.TreatmentCRUD;
 
 import javax.swing.*;
-import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class EditTreatmentGUI {
     private JPanel panel1;
@@ -17,10 +11,13 @@ public class EditTreatmentGUI {
     private JTextField TreatmentNameTextField;
     private JTextField durationTextField;
     private JTextField frequencyTextField;
-    private JLabel CnpPacientLabel;
+    private JTextField cnpPacientTextField;
+    private JLabel treatmentIDLabel;
+
 
     public void editTreatment() {
-        String pacientCnp = CnpPacientLabel.getText();
+        String treatmentID = treatmentIDLabel.getText();
+        String pacientCnp = cnpPacientTextField.getText();
         String treatmentName = TreatmentNameTextField.getText();
         int durationDays = Integer.parseInt(durationTextField.getText());
         int frequencyPerDay = Integer.parseInt(frequencyTextField.getText());
@@ -28,12 +25,14 @@ public class EditTreatmentGUI {
         // Create a new Treatment object
         TreatmentCRUD treatmentCRUD = TreatmentCRUD.getInstance();
         Treatment treatment = new Treatment(pacientCnp, treatmentName, durationDays, frequencyPerDay);
+        treatment.setTreatmentId(Integer.parseInt(treatmentID));
         treatmentCRUD.update(treatment);
 
     }
 
     public EditTreatmentGUI(Treatment treatment) {
-        CnpPacientLabel.setText(treatment.getPacientCnp());
+        treatmentIDLabel.setText(treatment.getTreatmentId() + "");
+        cnpPacientTextField.setText(treatment.getPacientCnp());
         TreatmentNameTextField.setText(treatment.getTreatmentName());
         durationTextField.setText(String.valueOf(treatment.getDurationDays()));
         frequencyTextField.setText(String.valueOf(treatment.getFrequencyPerDay()));
@@ -41,6 +40,10 @@ public class EditTreatmentGUI {
             try {
                 editTreatment();
                 JOptionPane.showMessageDialog(null, "Treatment edited successfully");
+                // close the window
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(panel1);
+                frame.dispose();
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error editing treatment");
                 ex.printStackTrace();

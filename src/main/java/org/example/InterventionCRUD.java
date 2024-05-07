@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class InterventionCRUD implements CRUDInterface<Intervention> {
@@ -84,6 +86,27 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public List<Intervention> readAll() {
+        List<Intervention> interventions = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(DBConnection.URL, DBConnection.USER, DBConnection.PASSWORD)) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM intervention");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int interventionId = resultSet.getInt("intervention_id");
+                String pacientCnp = resultSet.getString("pacient_cnp");
+                String type = resultSet.getString("type");
+                String description = resultSet.getString("description");
+                Date date = resultSet.getDate("date");
+                Intervention intervention = new Intervention(pacientCnp, type, description, date);
+                intervention.setInterventionId(interventionId);
+                interventions.add(intervention);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return interventions;
     }
 }
 

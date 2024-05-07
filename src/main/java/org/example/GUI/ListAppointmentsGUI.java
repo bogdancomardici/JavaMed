@@ -1,43 +1,43 @@
 package org.example.GUI;
 
+import org.example.Appointment;
+import org.example.AppointmentCRUD;
 import org.example.Treatment;
+import org.example.TreatmentCRUD;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.util.Optional;
-import org.example.TreatmentCRUD;
 
-public class ListTreatmentsGUI {
+public class ListAppointmentsGUI {
     private JTable table1;
     private JPanel panel1;
-    private JButton addTreatmentButton;
+    private JButton addANewAppointmentButton;
 
-
-    private List<Treatment> treatments;
+    private List<Appointment> appointments;
 
     public void populateTable() {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Tratment ID");
+        model.addColumn("Appointment ID");
         model.addColumn("Pacient CNP");
-        model.addColumn("Treatment Name");
-        model.addColumn("Duration Days");
-        model.addColumn("Frequency Per Day");
+        model.addColumn("Medic CNP");
+        model.addColumn("Date and Time");
         model.addColumn("Edit");
         model.addColumn("Delete");
 
         // add the data and edit delete buttons
-        for (Treatment treatment : treatments) {
-            model.addRow(new Object[]{treatment.getTreatmentId(),treatment.getPacientCnp(), treatment.getTreatmentName(), treatment.getDurationDays(), treatment.getFrequencyPerDay(), "Edit", "Delete"});
+        for (Appointment appointment : appointments) {
+            model.addRow(new Object[]{appointment.getAppointmentId(), appointment.getPacientCnp(), appointment.getMedicCnp(), appointment.getDate(), "Edit", "Delete"});
         }
 
         table1.setModel(model);
 
     }
 
-    public ListTreatmentsGUI() {
-        TreatmentCRUD treatmentCRUD = TreatmentCRUD.getInstance();
-        treatments = treatmentCRUD.readAll();
+    public ListAppointmentsGUI() {
+        AppointmentCRUD appointmentCRUD = AppointmentCRUD.getInstance();
+        appointments = appointmentCRUD.readAll();
         populateTable();
         // make the table cells not editable
         table1.setDefaultEditor(Object.class, null);
@@ -47,43 +47,39 @@ public class ListTreatmentsGUI {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = table1.rowAtPoint(evt.getPoint());
                 int col = table1.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 5) {
-                    // open the edit treatment gui
-                    String treatmentID = table1.getValueAt(row, 0).toString();
-                    Optional<Treatment> treatment = treatmentCRUD.read(treatmentID);
+                if (row >= 0 && col == 4) {
+                    // open the edit appointment gui
+                    String appointmentID = table1.getValueAt(row, 0).toString();
+                    Optional<Appointment> appointment = appointmentCRUD.read(appointmentID);
 
-                    JFrame frame = new JFrame("EditTreatmentGUI");
-                    EditTreatmentGUI editTreatmentGUI = new EditTreatmentGUI(treatment.get());
-                    frame.setContentPane(editTreatmentGUI.getMainPanel());
+                    JFrame frame = new JFrame("EditAppointmentGUI");
+                    EditAppointmentGUI editAppointmentGUI = new EditAppointmentGUI(appointment.get());
+                    frame.setContentPane(editAppointmentGUI.getMainPanel());
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
-
                     // update the table after all the editing windows are closed
                     frame.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                            treatments = treatmentCRUD.readAll();
+                            appointments = appointmentCRUD.readAll();
                             populateTable();
                         }
                     });
-                } else if (row >= 0 && col == 6) {
-                    // delete the treatment
-                    // convert int to string
-                    String treatmentID = table1.getValueAt(row, 0).toString();
-                    System.out.println(treatmentID);
-                    treatmentCRUD.delete(treatmentID);
+                } else if (row >= 0 && col == 5) {
+                    // delete the appointment
+                    String appointmentID = table1.getValueAt(row, 0).toString();
+                    appointmentCRUD.delete(appointmentID);
                     // refresh the table
-                    treatments = treatmentCRUD.readAll();
+                    appointments = appointmentCRUD.readAll();
                     populateTable();
                 }
             }
         });
-
-        addTreatmentButton.addActionListener(e -> {
-            JFrame frame = new JFrame("AddTreatmentGUI");
-            AddTreatmentGUI addTreatmentGUI = new AddTreatmentGUI();
-            frame.setContentPane(addTreatmentGUI.getMainPanel());
+        addANewAppointmentButton.addActionListener(e -> {
+            JFrame frame = new JFrame("AddAppointmentGUI");
+            AddAppointmentGUI addAppointmentGUI = new AddAppointmentGUI();
+            frame.setContentPane(addAppointmentGUI.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
@@ -92,11 +88,14 @@ public class ListTreatmentsGUI {
             frame.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    treatments = treatmentCRUD.readAll();
+                    appointments = appointmentCRUD.readAll();
                     populateTable();
                 }
             });
         });
     }
 
+    public JPanel getMainPanel() {
+        return panel1;
+    }
 }

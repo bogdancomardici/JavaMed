@@ -23,7 +23,7 @@ public class AddMedicGUI {
     private JTextField yearsOfExperienceTextField;
 
     public void addMedic() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         String cnp = CNPTextField.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
