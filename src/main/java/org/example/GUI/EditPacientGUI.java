@@ -1,14 +1,13 @@
 package org.example.GUI;
 
+import org.example.Pacient;
+import org.example.PacientCRUD;
+
 import javax.swing.*;
 import java.awt.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.example.Pacient;
-import org.example.PacientCRUD;
 public class EditPacientGUI {
     private JPanel panel1;
     private JTextField CNPTextField;
@@ -26,7 +25,7 @@ public class EditPacientGUI {
 
 
     public void editPacient() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         String cnp = CNPLabel.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -54,7 +53,7 @@ public class EditPacientGUI {
         firstNameTextField.setText(pacient.getFirstName());
         lastNameTextField.setText(pacient.getLastName());
         phoneNumberTextField.setText(pacient.getPhoneNumber());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         birthDateTextField.setText(formatter.format(pacient.getBirthDate()));
         addressTextField.setText(pacient.getAddress());
         bloodTypeTextField.setText(pacient.getBloodType());

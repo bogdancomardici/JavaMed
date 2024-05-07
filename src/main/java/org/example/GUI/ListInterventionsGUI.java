@@ -1,7 +1,5 @@
 package org.example.GUI;
 
-import org.example.Appointment;
-import org.example.AppointmentCRUD;
 import org.example.Intervention;
 import org.example.InterventionCRUD;
 

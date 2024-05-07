@@ -1,15 +1,12 @@
 package org.example.GUI;
 
-import org.example.Pacient;
-import org.example.PacientCRUD;
+import org.example.Medic;
+import org.example.MedicCRUD;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.example.Medic;
-import org.example.MedicCRUD;
 public class AddMedicGUI {
     private JPanel panel1;
     private JTextField CNPTextField;

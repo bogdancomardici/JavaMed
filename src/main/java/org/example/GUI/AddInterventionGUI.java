@@ -18,7 +18,7 @@ public class AddInterventionGUI {
     private JPanel panel1;
 
     public void addIntervention() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         String cnpPacient = cnpPacientTextField.getText();
         String type = typeTextField.getText();
         String description = descriptionTextField.getText();

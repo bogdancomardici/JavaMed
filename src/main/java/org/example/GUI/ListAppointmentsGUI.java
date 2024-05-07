@@ -2,8 +2,7 @@ package org.example.GUI;
 
 import org.example.Appointment;
 import org.example.AppointmentCRUD;
-import org.example.Treatment;
-import org.example.TreatmentCRUD;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -2,8 +2,6 @@ package org.example.GUI;
 
 import org.example.Appointment;
 import org.example.AppointmentCRUD;
-import org.example.Medic;
-import org.example.MedicCRUD;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -20,7 +18,7 @@ public class AddAppointmentGUI {
     private JPanel panel1;
 
     public void addAppointment() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy HH:mm", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.ENGLISH);
         String pacientCNP = pacientCNPTextField.getText();
         String medicCNP = medicCNPTextField.getText();
         Date dateAndTime = null;

@@ -2,11 +2,8 @@ package org.example.GUI;
 
 import org.example.Medic;
 import org.example.MedicCRUD;
-import org.example.Pacient;
-import org.example.PacientCRUD;
 
 import javax.swing.*;
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -24,7 +21,7 @@ public class EditMedicGUI {
     private JTextField yearsOfExperienceTextField;
 
     public void editMedic() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         String cnp = CNPLabel.getText();
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -51,7 +48,7 @@ public class EditMedicGUI {
         firstNameTextField.setText(medic.getFirstName());
         lastNameTextField.setText(medic.getLastName());
         phoneNumberTextField.setText(medic.getPhoneNumber());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         birthDateTextField.setText(formatter.format(medic.getBirthDate()));
         addressTextField.setText(medic.getAddress());
         specialityTextField.setText(medic.getSpeciality());

@@ -1,14 +1,9 @@
 package org.example.GUI;
 
-import org.example.Pacient;
-import org.example.PacientCRUD;
 import org.example.Treatment;
 import org.example.TreatmentCRUD;
 
 import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class AddTreatmentGUI {
     private JPanel panel1;
