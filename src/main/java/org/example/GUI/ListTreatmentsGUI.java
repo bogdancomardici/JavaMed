@@ -58,6 +58,7 @@ public class ListTreatmentsGUI {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
 
                     // update the table after all the editing windows are closed
                     frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,7 +71,9 @@ public class ListTreatmentsGUI {
                 } else if (row >= 0 && col == 6) {
                     ConfirmDelete confirmDelete = new ConfirmDelete();
                     confirmDelete.pack();
+                    confirmDelete.setLocationRelativeTo(null);
                     confirmDelete.setVisible(true);
+
                     confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent windowEvent) {
@@ -95,6 +98,7 @@ public class ListTreatmentsGUI {
             frame.setContentPane(addTreatmentGUI.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
             // update the table after all the editing windows are closed

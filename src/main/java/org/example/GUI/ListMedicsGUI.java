@@ -60,6 +60,7 @@ public class ListMedicsGUI {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
 
                     frame.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
@@ -72,7 +73,9 @@ public class ListMedicsGUI {
                 } else if (row >= 0 && col == 9) {
                     ConfirmDelete confirmDelete = new ConfirmDelete();
                     confirmDelete.pack();
+                    confirmDelete.setLocationRelativeTo(null);
                     confirmDelete.setVisible(true);
+
                     confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent windowEvent) {
@@ -98,6 +101,7 @@ public class ListMedicsGUI {
             frame.setContentPane(addMedicGUI.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
             frame.addWindowListener(new java.awt.event.WindowAdapter() {

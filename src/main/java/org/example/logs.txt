@@ -32,3 +32,66 @@
 2024-05-10T14:18:21.537023600 - Treatments read: SELECT * FROM treatment
 2024-05-10T14:18:21.576035500 - Appointments read: SELECT * FROM appointment
 2024-05-10T14:18:21.615009600 - Interventions read: SELECT * FROM intervention
+2024-05-10T17:56:08.745939200 - Pacients read: SELECT * FROM pacient
+2024-05-10T17:56:08.811120 - Medics read: SELECT * FROM medic
+2024-05-10T17:56:08.962201800 - Treatments read: SELECT * FROM treatment
+2024-05-10T17:56:09.002918300 - Appointments read: SELECT * FROM appointment
+2024-05-10T17:56:09.042857600 - Interventions read: SELECT * FROM intervention
+2024-05-10T17:56:18.843407600 - Pacient read: SELECT * FROM pacient WHERE cnp = ('5021023297280')
+2024-05-10T17:56:26.955793900 - Pacient updated: UPDATE pacient SET first_name = ('Bogdan'), last_name = ('Bogdane'), phone_number = ('0732283658'), birth_date = ('2001-10-23 +03'), address = ('Bucharest'), blood_type = ('B+'), height = ('179'::int4), weight = ('76'::int4), chronic_diseases = ('none') WHERE cnp = ('5021023297280')
+2024-05-10T17:56:28.337384200 - Pacients read: SELECT * FROM pacient
+2024-05-10T17:56:40.219387300 - Pacient read: SELECT * FROM pacient WHERE cnp = ('5021023297280')
+2024-05-10T17:56:42.390613100 - Pacients read: SELECT * FROM pacient
+2024-05-10T17:56:45.311962500 - Pacient deleted: DELETE FROM pacient WHERE cnp = ('5021023297280')
+2024-05-10T17:56:45.344222800 - Pacients read: SELECT * FROM pacient
+2024-05-10T17:58:24.286544 - Pacients read: SELECT * FROM pacient
+2024-05-10T17:58:24.349944700 - Medics read: SELECT * FROM medic
+2024-05-10T17:58:24.407780200 - Treatments read: SELECT * FROM treatment
+2024-05-10T17:58:24.452800700 - Appointments read: SELECT * FROM appointment
+2024-05-10T17:58:24.495791600 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:00:05.047146100 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:00:05.113434300 - Medics read: SELECT * FROM medic
+2024-05-10T18:00:05.275634500 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:00:05.317478700 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:00:05.361453900 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:00:58.188301900 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:00:58.253927900 - Medics read: SELECT * FROM medic
+2024-05-10T18:00:58.310298300 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:00:58.458749200 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:00:58.498950700 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:01:02.681979300 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:02:58.651916 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:02:58.717874600 - Medics read: SELECT * FROM medic
+2024-05-10T18:02:58.776111900 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:02:58.820458900 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:02:58.862437700 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:03:04.175132900 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:03:06.090213900 - Pacient read: SELECT * FROM pacient WHERE cnp = ('123456789145')
+2024-05-10T18:03:08.651836200 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:03:14.887855100 - Pacient read: SELECT * FROM pacient WHERE cnp = ('123456789202')
+2024-05-10T18:03:16.824112 - Pacient updated: UPDATE pacient SET first_name = ('Andreescu'), last_name = ('Andrei'), phone_number = ('2123124'), birth_date = ('1970-01-01 +02'), address = ('Mizi;'), blood_type = ('AB'), height = ('176'::int4), weight = ('80'::int4), chronic_diseases = ('none') WHERE cnp = ('123456789202')
+2024-05-10T18:03:18.317201500 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:04:02.711721200 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:04:02.882074800 - Medics read: SELECT * FROM medic
+2024-05-10T18:04:02.935362600 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:04:02.989996200 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:04:03.039460400 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:04:06.365251900 - Intervention read: SELECT * FROM intervention WHERE intervention_id = ('42'::int4)
+2024-05-10T18:04:07.747688900 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:04:17.422040400 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:09:14.657427500 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:09:14.724430700 - Medics read: SELECT * FROM medic
+2024-05-10T18:09:14.783426100 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:09:14.831422100 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:09:14.874426800 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:09:42.712300100 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:09:42.782304400 - Medics read: SELECT * FROM medic
+2024-05-10T18:09:42.945299900 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:09:42.988306600 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:09:43.028317800 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:11:57.654256500 - Pacients read: SELECT * FROM pacient
+2024-05-10T18:11:57.729606400 - Medics read: SELECT * FROM medic
+2024-05-10T18:11:57.795713500 - Treatments read: SELECT * FROM treatment
+2024-05-10T18:11:57.849706 - Appointments read: SELECT * FROM appointment
+2024-05-10T18:11:58.005714800 - Interventions read: SELECT * FROM intervention
+2024-05-10T18:12:01.249512300 - Pacients read: SELECT * FROM pacient

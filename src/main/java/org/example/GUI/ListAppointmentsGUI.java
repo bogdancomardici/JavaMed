@@ -57,6 +57,7 @@ public class ListAppointmentsGUI {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.pack();
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                     // update the table after all the editing windows are closed
                     frame.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
@@ -70,7 +71,9 @@ public class ListAppointmentsGUI {
                     // show delete confirmation dialog and delete only on ok
                     ConfirmDelete confirmDelete = new ConfirmDelete();
                     confirmDelete.pack();
+                    confirmDelete.setLocationRelativeTo(null);
                     confirmDelete.setVisible(true);
+
                     confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosed(java.awt.event.WindowEvent windowEvent) {
@@ -93,6 +96,7 @@ public class ListAppointmentsGUI {
             frame.setContentPane(addAppointmentGUI.getMainPanel());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
             // update the table after all the editing windows are closed
