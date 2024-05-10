@@ -67,11 +67,23 @@ public class ListAppointmentsGUI {
                     });
                 } else if (row >= 0 && col == 5) {
                     // delete the appointment
-                    String appointmentID = table1.getValueAt(row, 0).toString();
-                    appointmentCRUD.delete(appointmentID);
-                    // refresh the table
-                    appointments = appointmentCRUD.readAll();
-                    populateTable();
+                    // show delete confirmation dialog and delete only on ok
+                    ConfirmDelete confirmDelete = new ConfirmDelete();
+                    confirmDelete.pack();
+                    confirmDelete.setVisible(true);
+                    confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                            if (confirmDelete.isOk()) {
+                                String appointmentID = table1.getValueAt(row, 0).toString();
+                                appointmentCRUD.delete(appointmentID);
+                                // refresh the table
+                                appointments = appointmentCRUD.readAll();
+                                populateTable();
+                            }
+
+                        }
+                    });
                 }
             }
         });

@@ -68,14 +68,23 @@ public class ListTreatmentsGUI {
                         }
                     });
                 } else if (row >= 0 && col == 6) {
-                    // delete the treatment
-                    // convert int to string
-                    String treatmentID = table1.getValueAt(row, 0).toString();
-                    System.out.println(treatmentID);
-                    treatmentCRUD.delete(treatmentID);
-                    // refresh the table
-                    treatments = treatmentCRUD.readAll();
-                    populateTable();
+                    ConfirmDelete confirmDelete = new ConfirmDelete();
+                    confirmDelete.pack();
+                    confirmDelete.setVisible(true);
+                    confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                            if (confirmDelete.isOk()) {
+                                // delete the treatment
+                                String treatmentID = table1.getValueAt(row, 0).toString();
+                                treatmentCRUD.delete(treatmentID);
+                                // refresh the table
+                                treatments = treatmentCRUD.readAll();
+                                populateTable();
+                            }
+
+                        }
+                    });
                 }
             }
         });

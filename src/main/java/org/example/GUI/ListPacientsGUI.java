@@ -70,14 +70,23 @@ public class ListPacientsGUI {
                         }
                     });
                 } else if (row >= 0 && col == 11) {
-                    PacientCRUD pacientCRUD = PacientCRUD.getInstance();
-                    // get pacient cnp from the table
-                    String cnp = (String) table1.getValueAt(row, 0);
-                    // delete the pacient
-                    pacientCRUD.delete(cnp);
-                    // refresh the table
-                    pacients = pacientCRUD.readAll();
-                    populateTable();
+                    ConfirmDelete confirmDelete = new ConfirmDelete();
+                    confirmDelete.pack();
+                    confirmDelete.setVisible(true);
+                    confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                            if (confirmDelete.isOk()) {
+                                // delete the pacient
+                                String cnp = (String) table1.getValueAt(row, 0);
+                                pacientCRUD.delete(cnp);
+                                // refresh the table
+                                pacients = pacientCRUD.readAll();
+                                populateTable();
+                            }
+
+                        }
+                    });
                 }
             }
         });

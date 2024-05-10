@@ -33,6 +33,7 @@ public class MedicCRUD implements CRUDInterface<Medic>{
             preparedStatement.setInt(8, medic.getYearsOfExperience());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
+            Logger.addLog("Medic created: " + preparedStatement);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,6 +54,7 @@ public class MedicCRUD implements CRUDInterface<Medic>{
             preparedStatement.setInt(7, medic.getYearsOfExperience());
             preparedStatement.setString(8, medic.getCnp());
             preparedStatement.executeUpdate();
+            Logger.addLog("Medic updated: " + preparedStatement);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,6 +76,7 @@ public class MedicCRUD implements CRUDInterface<Medic>{
                 String address = resultSet.getString("address");
                 String speciality = resultSet.getString("speciality");
                 int yearsOfExperience = resultSet.getInt("years_experience");
+                Logger.addLog("Medic read: " + preparedStatement);
                 return Optional.of(new Medic(cnp, firstName, lastName, phoneNumber, birthDate, address, speciality, yearsOfExperience));
             }
 
@@ -90,6 +93,7 @@ public class MedicCRUD implements CRUDInterface<Medic>{
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM medic WHERE cnp = ?")) {
             preparedStatement.setString(1, cnp);
             preparedStatement.executeUpdate();
+            Logger.addLog("Medic deleted: " + preparedStatement);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,7 +117,7 @@ public class MedicCRUD implements CRUDInterface<Medic>{
                 int yearsOfExperience = resultSet.getInt("years_experience");
                 medics.add(new Medic(cnp, firstName, lastName, phoneNumber, birthDate, address, speciality, yearsOfExperience));
             }
-
+            Logger.addLog("Medics read: " + preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
         }

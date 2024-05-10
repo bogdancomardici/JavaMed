@@ -1,0 +1,34 @@
+2024-05-10T13:56:39.744295500 - Pacients read: SELECT * FROM pacient
+2024-05-10T13:56:39.812533200 - Medics read: SELECT * FROM medic
+2024-05-10T13:56:39.969529400 - Treatments read: SELECT * FROM treatment
+2024-05-10T13:56:40.009525800 - Appointments read: SELECT * FROM appointment
+2024-05-10T13:56:40.047538800 - Interventions read: SELECT * FROM intervention
+2024-05-10T13:57:19.714748100 - Pacient created: INSERT INTO pacient VALUES (('5021023297280'), ('Bogdan'), ('Bogdan'), ('0732283658'), ('2001-10-23 +03'), ('Bucharest'), ('B+'), ('179'::int4), ('76'::int4), ('none'))
+2024-05-10T13:57:22.140697500 - Pacients read: SELECT * FROM pacient
+2024-05-10T13:57:43.444621100 - Treatment deleted: DELETE FROM treatment WHERE treatment_id = ('51'::int4)
+2024-05-10T13:57:43.477626400 - Treatments read: SELECT * FROM treatment
+2024-05-10T13:57:50.856129800 - Treatment read: SELECT * FROM treatment WHERE treatment_id = ('41'::int4)
+2024-05-10T13:57:54.456755800 - Treatment updated: UPDATE treatment SET pacient_cnp = ('123456789145'), treatment_name = ('nurofen22'), duration_days = ('6'::int4), frequency_per_day = ('2'::int4) WHERE treatment_id = ('41'::int4)
+2024-05-10T13:57:56.120691400 - Treatments read: SELECT * FROM treatment
+2024-05-10T14:04:11.328929 - Pacients read: SELECT * FROM pacient
+2024-05-10T14:04:11.394927300 - Medics read: SELECT * FROM medic
+2024-05-10T14:04:11.449929300 - Treatments read: SELECT * FROM treatment
+2024-05-10T14:04:11.498923900 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:04:11.539929500 - Interventions read: SELECT * FROM intervention
+2024-05-10T14:04:20.458911 - Appointment deleted: DELETE FROM appointment WHERE appointment_id = ('48'::int4)
+2024-05-10T14:04:20.489914700 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:04:47.686013400 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:05:43.601894 - Pacients read: SELECT * FROM pacient
+2024-05-10T14:05:43.772944 - Medics read: SELECT * FROM medic
+2024-05-10T14:05:43.825937 - Treatments read: SELECT * FROM treatment
+2024-05-10T14:05:43.874948700 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:05:43.915940 - Interventions read: SELECT * FROM intervention
+2024-05-10T14:06:23.280346700 - Appointment created: INSERT INTO appointment  (medic_cnp, pacient_cnp, date) VALUES (('1234567890127'), ('123456789145'), ('2001-01-01 20:20:00+02'))
+2024-05-10T14:06:25.939210500 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:06:45.010782100 - Appointment deleted: DELETE FROM appointment WHERE appointment_id = ('49'::int4)
+2024-05-10T14:06:45.042781200 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:18:21.324009900 - Pacients read: SELECT * FROM pacient
+2024-05-10T14:18:21.386012500 - Medics read: SELECT * FROM medic
+2024-05-10T14:18:21.537023600 - Treatments read: SELECT * FROM treatment
+2024-05-10T14:18:21.576035500 - Appointments read: SELECT * FROM appointment
+2024-05-10T14:18:21.615009600 - Interventions read: SELECT * FROM intervention

@@ -70,12 +70,23 @@ public class ListMedicsGUI {
                         }
                     });
                 } else if (row >= 0 && col == 9) {
-                    // delete the medic
-                    String cnp = (String) table1.getValueAt(row, 0);
-                    medicCRUD.delete(cnp);
-                    // refresh the table
-                    medics = medicCRUD.readAll();
-                    populateTable();
+                    ConfirmDelete confirmDelete = new ConfirmDelete();
+                    confirmDelete.pack();
+                    confirmDelete.setVisible(true);
+                    confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                            if (confirmDelete.isOk()) {
+                                // delete the medic
+                                String cnp = (String) table1.getValueAt(row, 0);
+                                medicCRUD.delete(cnp);
+                                // refresh the table
+                                medics = medicCRUD.readAll();
+                                populateTable();
+                            }
+
+                        }
+                    });
                 }
             }
         });

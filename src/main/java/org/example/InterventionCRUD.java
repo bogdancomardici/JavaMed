@@ -33,6 +33,7 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
             preparedStatement.setString(3, intervention.getDescription());
             preparedStatement.setDate(4, date);
             preparedStatement.executeUpdate();
+            Logger.addLog("Intervention created: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,8 +49,8 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
             preparedStatement.setString(3, intervention.getDescription());
             preparedStatement.setDate(4, date);
             preparedStatement.setInt(5, intervention.getInterventionId());
-
             preparedStatement.executeUpdate();
+            Logger.addLog("Intervention updated: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,6 +62,7 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM intervention WHERE intervention_id = ?");
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.executeUpdate();
+            Logger.addLog("Intervention deleted: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,6 +82,7 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
                 Date date = resultSet.getDate("date");
                 Intervention intervention = new Intervention(pacientCnp, type, description, date);
                 intervention.setInterventionId(interventionId);
+                Logger.addLog("Intervention read: " + preparedStatement);
                 return Optional.of(intervention);
             }
         } catch (Exception e) {
@@ -103,6 +106,7 @@ public class InterventionCRUD implements CRUDInterface<Intervention> {
                 intervention.setInterventionId(interventionId);
                 interventions.add(intervention);
             }
+            Logger.addLog("Interventions read: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }

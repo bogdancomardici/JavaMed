@@ -28,6 +28,7 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
             preparedStatement.setInt(3, treatment.getDurationDays());
             preparedStatement.setInt(4, treatment.getFrequencyPerDay());
             preparedStatement.executeUpdate();
+            Logger.addLog("Treatment created: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,6 +44,7 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
             preparedStatement.setInt(4, treatment.getFrequencyPerDay());
             preparedStatement.setInt(5, treatment.getTreatmentId());
             preparedStatement.executeUpdate();
+            Logger.addLog("Treatment updated: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,6 +56,7 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM treatment WHERE treatment_id = ?");
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.executeUpdate();
+            Logger.addLog("Treatment deleted: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,6 +76,7 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
                 int frequencyPerDay = resultSet.getInt("frequency_per_day");
                 Treatment treatment = new Treatment(pacientCnp, treatmentName, durationDays, frequencyPerDay);
                 treatment.setTreatmentId(treatmentId);
+                Logger.addLog("Treatment read: " + preparedStatement);
                 return Optional.of(treatment);
             }
         } catch (Exception e) {
@@ -96,6 +100,7 @@ public class TreatmentCRUD implements CRUDInterface<Treatment>{
                 treatment.setTreatmentId(treatmentId);
                 treatments.add(treatment);
             }
+            Logger.addLog("Treatments read: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }

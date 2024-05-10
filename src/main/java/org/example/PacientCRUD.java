@@ -33,6 +33,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
             preparedStatement.setInt(9, pacient.getWeight());
             preparedStatement.setString(10, pacient.getChronicDiseases());
             System.out.println(preparedStatement);
+            Logger.addLog("Pacient created: " + preparedStatement);
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {
@@ -55,6 +56,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
             preparedStatement.setInt(8, pacient.getWeight());
             preparedStatement.setString(9, pacient.getChronicDiseases());
             preparedStatement.setString(10, pacient.getCnp());
+            Logger.addLog("Pacient updated: " + preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,6 +68,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM pacient WHERE cnp = ?")) {
             preparedStatement.setString(1, cnp);
             preparedStatement.executeUpdate();
+            Logger.addLog("Pacient deleted: " + preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -88,6 +91,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
                 int weight = resultSet.getInt("weight");
                 String chronicDiseases = resultSet.getString("chronic_diseases");
                 Pacient pacient = new Pacient(cnp, firstName, lastName, phoneNumber, birthDate, address, bloodType, height, weight, chronicDiseases);
+                Logger.addLog("Pacient read: " + preparedStatement);
                 return Optional.of(pacient);
             }
         } catch (SQLException e) {
@@ -116,6 +120,7 @@ public class PacientCRUD implements CRUDInterface<Pacient> {
                 Pacient pacient = new Pacient(cnp, firstName, lastName, phoneNumber, birthDate, address, bloodType, height, weight, chronicDiseases);
                 pacients.add(pacient);
             }
+            Logger.addLog("Pacients read: " + preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
         }

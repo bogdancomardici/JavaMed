@@ -30,6 +30,7 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
             preparedStatement.setString(2, appointment.getMedicCnp());
             preparedStatement.setTimestamp(3, timestamp);
             preparedStatement.executeUpdate();
+            Logger.addLog("Appointment created: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,6 +49,7 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
                 java.sql.Timestamp timestamp = resultSet.getTimestamp("date");
                 Appointment appointment = new Appointment(medicCnp, pacientCnp, timestamp.toLocalDateTime());
                 appointment.setAppointmentId(appointmentId);
+                Logger.addLog("Appointment read: " + preparedStatement);
                 return Optional.of(appointment);
             }
         } catch (Exception e) {
@@ -66,6 +68,7 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
             preparedStatement.setTimestamp(3, timestamp);
             preparedStatement.setInt(4, appointment.getAppointmentId());
             preparedStatement.executeUpdate();
+            Logger.addLog("Appointment updated: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,6 +81,7 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM appointment WHERE appointment_id = ?");
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.executeUpdate();
+            Logger.addLog("Appointment deleted: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +101,7 @@ public class AppointmentCRUD  implements CRUDInterface<Appointment>{
                 appointment.setAppointmentId(appointmentId);
                 appointments.add(appointment);
             }
+            Logger.addLog("Appointments read: " + preparedStatement);
         } catch (Exception e) {
             e.printStackTrace();
         }

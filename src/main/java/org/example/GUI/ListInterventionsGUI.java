@@ -66,12 +66,23 @@ public class ListInterventionsGUI {
                         }
                     });
                 } else if (row >= 0 && col == 6) {
-                    // delete the intervention
-                    String interventionID = table1.getValueAt(row, 0).toString();
-                    interventionCRUD.delete(interventionID);
-                    // refresh the table
-                    interventions = interventionCRUD.readAll();
-                    populateTable();
+                    ConfirmDelete confirmDelete = new ConfirmDelete();
+                    confirmDelete.pack();
+                    confirmDelete.setVisible(true);
+                    confirmDelete.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                            if (confirmDelete.isOk()) {
+                                // delete the intervention
+                                String interventionID = table1.getValueAt(row, 0).toString();
+                                interventionCRUD.delete(interventionID);
+                                // refresh the table
+                                interventions = interventionCRUD.readAll();
+                                populateTable();
+                            }
+
+                        }
+                    });;
                 }
             }
 
