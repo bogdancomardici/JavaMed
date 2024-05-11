@@ -33,7 +33,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <nested-form id="e6be8" form-file="org/example/GUI/ListPacientsGUI.form">
+                  <nested-form id="e6be8" form-file="org/example/GUI/Pacient/ListPacientsGUI.form">
                     <constraints/>
                   </nested-form>
                 </children>
@@ -55,7 +55,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <nested-form id="3ebf6" form-file="org/example/GUI/ListMedicsGUI.form">
+                  <nested-form id="3ebf6" form-file="org/example/GUI/Medic/ListMedicsGUI.form">
                     <constraints/>
                   </nested-form>
                 </children>
@@ -77,7 +77,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <nested-form id="7d01b" form-file="org/example/GUI/ListTreatmentsGUI.form">
+                  <nested-form id="7d01b" form-file="org/example/GUI/Treatment/ListTreatmentsGUI.form">
                     <constraints/>
                   </nested-form>
                 </children>
@@ -99,7 +99,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <nested-form id="36671" form-file="org/example/GUI/ListAppointmentsGUI.form">
+                  <nested-form id="36671" form-file="org/example/GUI/Appointment/ListAppointmentsGUI.form">
                     <constraints/>
                   </nested-form>
                 </children>
@@ -121,7 +121,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <nested-form id="5bc06" form-file="org/example/GUI/ListInterventionsGUI.form">
+                  <nested-form id="5bc06" form-file="org/example/GUI/Intervention/ListInterventionsGUI.form">
                     <constraints/>
                   </nested-form>
                 </children>
