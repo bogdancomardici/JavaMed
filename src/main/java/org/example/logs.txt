@@ -206,3 +206,10 @@
 2024-05-11T18:09:44.053963600 - Pacient read: SELECT * FROM pacient WHERE cnp = ('123')
 2024-05-11T18:09:52.764794200 - Pacient updated: UPDATE pacient SET first_name = ('Johny'), last_name = ('Doe'), phone_number = ('1234567890'), birth_date = ('2005-10-20 +03'), address = ('Bucharest'), blood_type = ('A_POSITIVE'), height = ('159'::int4), weight = ('59'::int4), chronic_diseases = ('none') WHERE cnp = ('123')
 2024-05-11T18:09:54.343262100 - Pacients read: SELECT * FROM pacient
+2024-05-14T12:27:31.526742200 - Pacients read: SELECT * FROM pacient
+2024-05-14T12:27:31.603751300 - Medics read: SELECT * FROM medic
+2024-05-14T12:27:31.764745700 - Treatments read: SELECT * FROM treatment
+2024-05-14T12:27:31.920764800 - Appointments read: SELECT * FROM appointment
+2024-05-14T12:27:31.971785500 - Interventions read: SELECT * FROM intervention
+2024-05-14T12:28:15.999427600 - Pacient created: INSERT INTO pacient VALUES (('1234567890123'), ('John'), ('Doe'), ('1234567890'), ('2000-10-10 +03'), ('Bucharest'), ('AB_NEGATIVE'), ('180'::int4), ('80'::int4), ('none'))
+2024-05-14T12:28:19.132905900 - Pacients read: SELECT * FROM pacient
