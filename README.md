@@ -52,20 +52,20 @@ Service classes in the `CRUD` package perform operations for creating, reading, 
 
 ### Models
 The UML diagram for models provides a visual representation of the entities and their relationships.
-![Models UML Diagram](ModelsUML.png)
+![Models UML Diagram](Images/ModelsUML.png)
 
 ### Interfaces
 The UML diagram for interfaces shows the structure and relationships between different interfaces and their implementations.
-![Interfaces UML Diagram](InterfacesUML.png)
+![Interfaces UML Diagram](Images/InterfacesUML.png)
 
 ### CRUD Service Classes
 The UML diagram for CRUD service classes illustrates how these classes interact with the database and other parts of the application.
-![CRUD UML Diagram](CRUDUML.png)
+![CRUD UML Diagram](Images/CRUDUML.png)
 
 ## Database 🗃️
 
 The application uses PostgreSQL as its database management system, chosen for its robustness and scalability. The database schema is designed to efficiently store and manage data related to patients, medics, appointments, medications, and medical interventions.
-![Database Schema](DBSchema.png)
+![Database Schema](Images/DBSchema.png)
 
 ## GUI 🖼️
 
@@ -73,27 +73,27 @@ The graphical user interface, developed using JavaSwing, is designed to be intui
 
 ### Dashboard
 The main dashboard provides an overview and access to the primary functions of the application.
-![Dashboard](DashboardGUI.png)
+![DashboardDashboardGUI.png)
 
 ### Adding a New Item ➕
 A form that allows users to add new records, such as patients or appointments.
 
-![Add Pacient](AddPacient.png)
+![Add Pacient](Images/AddPacient.png)
 
 ### Editing an Item ✏️
 A form for modifying existing records.
 
-![Edit Pacient](EditPacient.png)
+![Edit Pacient](Images/EditPacient.png)
 
 ### Validators ✔️
 Interface elements that provide real-time validation feedback to ensure data integrity.
 
-![Validator](Validator.png)
+![Validator](Images/Validator.png)
 
 ### Delete Prompt 🗑️
 A confirmation dialog that appears when a user attempts to delete a record, ensuring intentional actions.
 
-![Delete Prompt](DeletePrompt.png)
+![Delete Prompt](Images/DeletePrompt.png)
 
 ## Service Classes 🛠️
 
