@@ -213,3 +213,13 @@
 2024-05-14T12:27:31.971785500 - Interventions read: SELECT * FROM intervention
 2024-05-14T12:28:15.999427600 - Pacient created: INSERT INTO pacient VALUES (('1234567890123'), ('John'), ('Doe'), ('1234567890'), ('2000-10-10 +03'), ('Bucharest'), ('AB_NEGATIVE'), ('180'::int4), ('80'::int4), ('none'))
 2024-05-14T12:28:19.132905900 - Pacients read: SELECT * FROM pacient
+2024-05-18T16:49:14.767534700 - Pacients read: SELECT * FROM pacient
+2024-05-18T16:49:14.842554200 - Medics read: SELECT * FROM medic
+2024-05-18T16:49:14.998565100 - Treatments read: SELECT * FROM treatment
+2024-05-18T16:49:15.156552100 - Appointments read: SELECT * FROM appointment
+2024-05-18T16:49:15.208630100 - Interventions read: SELECT * FROM intervention
+2024-05-18T16:51:19.014843900 - Pacients read: SELECT * FROM pacient
+2024-05-18T16:51:20.271634700 - Pacient read: SELECT * FROM pacient WHERE cnp = ('324325')
+2024-05-18T16:51:57.915347400 - Pacients read: SELECT * FROM pacient
+2024-05-18T16:52:57.015647800 - Pacient created: INSERT INTO pacient VALUES ((NULL), ('sof'), ('dwaeomf'), (NULL), ('2010-10-10 +03'), ('dkjsd'), ('A_POSITIVE'), ('190'::int4), ('100'::int4), ('none'))
+2024-05-18T16:52:59.328851200 - Pacients read: SELECT * FROM pacient
